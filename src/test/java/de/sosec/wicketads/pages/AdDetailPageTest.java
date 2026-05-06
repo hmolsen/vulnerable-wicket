@@ -26,7 +26,7 @@ class AdDetailPageTest extends AbstractWicketTest {
         tester.startPage(AdDetailPage.class, pp);
         String html = tester.getLastResponseAsString();
         assertTrue(html.contains("Vintage Guitar"),  "Title must appear");
-        assertTrue(html.contains("1960s"),           "Description content must appear");
+        assertTrue(html.contains("1968"),            "Description content must appear");
         assertTrue(html.contains("alice"),           "Owner username must appear");
         assertTrue(html.contains("Electronics"),     "Category must appear");
     }
