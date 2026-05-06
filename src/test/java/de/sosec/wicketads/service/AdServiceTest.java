@@ -67,10 +67,13 @@ class AdServiceTest extends AbstractDbTest {
     @Test
     @Order(6)
     void search_byKeyword_returnsMatchingAds() {
-        List<Ad> results = AdService.search("Guitar", "");
+        List<Ad> results = AdService.search("guitar", "");   // lowercase – case-insensitive search
         assertFalse(results.isEmpty());
-        assertTrue(results.stream().allMatch(a ->
-                a.getTitle().contains("Guitar") || (a.getDescription() != null && a.getDescription().contains("Guitar"))));
+        assertTrue(results.stream().allMatch(a -> {
+            String t = a.getTitle() != null ? a.getTitle().toLowerCase() : "";
+            String d = a.getDescription() != null ? a.getDescription().toLowerCase() : "";
+            return t.contains("guitar") || d.contains("guitar");
+        }));
     }
 
     @Test

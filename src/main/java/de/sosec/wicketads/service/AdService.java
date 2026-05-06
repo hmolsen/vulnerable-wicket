@@ -43,7 +43,7 @@ public class AdService {
                      "JOIN users u ON u.id = a.owner_id WHERE 1=1";
 
         if (keyword != null && !keyword.isBlank()) {
-            sql += " AND (a.title LIKE '%" + keyword + "%' OR a.description LIKE '%" + keyword + "%')";
+            sql += " AND (LOWER(a.title) LIKE '%" + keyword.toLowerCase() + "%' OR LOWER(a.description) LIKE '%" + keyword.toLowerCase() + "%')";
         }
         if (category != null && !category.isBlank()) {
             sql += " AND a.category = '" + category + "'";
