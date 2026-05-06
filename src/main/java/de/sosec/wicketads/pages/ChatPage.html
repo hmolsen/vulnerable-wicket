@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html xmlns:wicket="http://wicket.apache.org">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>WicketAds – Messages</title>
+    <title>WicketAds &ndash; Messages</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
     <link href="/css/wicketads.css" rel="stylesheet"/>
@@ -55,14 +55,14 @@
                     <span class="chat-bubble__sender" wicket:id="senderUsername"></span>
                     <span class="chat-bubble__time" wicket:id="sentAt"></span>
                 </div>
-                <!-- VULNERABILITY: XSS – body rendered without HTML escaping -->
+                <!-- VULNERABILITY: XSS &ndash; body rendered without HTML escaping -->
                 <div class="chat-bubble__body" wicket:id="body"></div>
             </div>
         </div>
 
         <form wicket:id="sendForm" class="chat-input-bar">
             <textarea wicket:id="messageBody" class="form-control"
-                      placeholder="Type a message…" rows="2"></textarea>
+                      placeholder="Type a message&hellip;" rows="2"></textarea>
             <button type="submit" class="btn btn-primary">
                 <i class="bi bi-send"></i>
             </button>
