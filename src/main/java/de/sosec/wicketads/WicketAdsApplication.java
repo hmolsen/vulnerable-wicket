@@ -17,6 +17,7 @@ public class WicketAdsApplication extends AuthenticatedWebApplication {
     @Override
     protected void init() {
         super.init();
+        getCspSettings().blocking().disabled();
         DatabaseInitializer.initialize();
 
         mountPage("/register", RegisterPage.class);

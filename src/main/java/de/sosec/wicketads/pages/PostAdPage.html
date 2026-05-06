@@ -2,46 +2,65 @@
 <html xmlns:wicket="http://wicket.apache.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>WicketAds - Post Ad</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>WicketAds – Post Ad</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+    <link href="/css/wicketads.css" rel="stylesheet"/>
 </head>
 <body>
-<nav class="navbar navbar-dark bg-dark mb-4">
-    <div class="container-fluid">
-        <a class="navbar-brand fw-bold" href="/">WicketAds</a>
-        <div>
-            <a href="/" class="btn btn-outline-light btn-sm me-2">Home</a>
-            <a href="/logout" class="btn btn-outline-danger btn-sm">Logout</a>
-        </div>
+
+<nav class="wa-nav">
+    <a class="wa-nav__brand" href="/"><i class="bi bi-grid-3x3-gap-fill"></i> WicketAds</a>
+    <div class="wa-nav__links">
+        <a href="/" class="btn btn-outline btn-sm"><i class="bi bi-house"></i> Home</a>
+        <a href="/logout" class="btn btn-danger btn-sm"><i class="bi bi-box-arrow-right"></i> Logout</a>
     </div>
 </nav>
 
-<div class="container" style="max-width:640px;">
-    <h2 class="mb-4">Post New Ad</h2>
+<div class="container-sm page-content">
 
-    <div wicket:id="feedback" class="mb-3"></div>
+    <div class="wa-card">
+        <div class="wa-card__header">
+            <h2 style="font-size:1.2rem; font-weight:700; display:flex; align-items:center; gap:.5rem;">
+                <i class="bi bi-plus-circle" style="color:var(--clr-primary);"></i> Post New Ad
+            </h2>
+        </div>
+        <div class="wa-card__body">
+            <div wicket:id="feedback" class="feedback-panel mb-2"></div>
 
-    <form wicket:id="form">
-        <div class="mb-3">
-            <label class="form-label">Title</label>
-            <input type="text" wicket:id="title" class="form-control"/>
+            <form wicket:id="form">
+                <div class="form-group">
+                    <label class="form-label"><i class="bi bi-card-heading"></i> Title</label>
+                    <input type="text" wicket:id="title" class="form-control" placeholder="What are you selling?"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-label"><i class="bi bi-text-paragraph"></i> Description</label>
+                    <textarea wicket:id="description" class="form-control" rows="6"
+                              placeholder="Describe the item – condition, features, details…"></textarea>
+                </div>
+                <div class="row row-2">
+                    <div class="form-group">
+                        <label class="form-label"><i class="bi bi-currency-dollar"></i> Price ($)</label>
+                        <input type="text" wicket:id="price" class="form-control" placeholder="0.00"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label"><i class="bi bi-tag"></i> Category</label>
+                        <select wicket:id="category" class="form-select"></select>
+                    </div>
+                </div>
+
+                <div style="display:flex; gap:.75rem; margin-top:.5rem;">
+                    <button type="submit" class="btn btn-success">
+                        <i class="bi bi-check-circle"></i> Publish Ad
+                    </button>
+                    <a href="/" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
         </div>
-        <div class="mb-3">
-            <label class="form-label">Description</label>
-            <textarea wicket:id="description" class="form-control" rows="5"></textarea>
-        </div>
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <label class="form-label">Price ($)</label>
-                <input type="text" wicket:id="price" class="form-control"/>
-            </div>
-            <div class="col-md-6">
-                <label class="form-label">Category</label>
-                <select wicket:id="category" class="form-select"></select>
-            </div>
-        </div>
-        <button type="submit" class="btn btn-success">Post Ad</button>
-    </form>
+    </div>
+
 </div>
+
 </body>
 </html>

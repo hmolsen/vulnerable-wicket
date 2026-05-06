@@ -2,9 +2,24 @@
 <html xmlns:wicket="http://wicket.apache.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>WicketAds - Logout</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>WicketAds – Signing out…</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+    <link href="/css/wicketads.css" rel="stylesheet"/>
 </head>
 <body>
-<p>Logging out...</p>
+
+<nav class="wa-nav">
+    <a class="wa-nav__brand" href="/"><i class="bi bi-grid-3x3-gap-fill"></i> WicketAds</a>
+</nav>
+
+<div class="wa-auth-wrap">
+    <div style="text-align:center; color:var(--clr-muted);">
+        <i class="bi bi-arrow-repeat" style="font-size:2.5rem; display:block; margin-bottom:.75rem; color:var(--clr-primary);"></i>
+        <p style="font-size:1rem; font-weight:600;">Signing you out…</p>
+    </div>
+</div>
+
 </body>
 </html>

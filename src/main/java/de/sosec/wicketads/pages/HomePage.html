@@ -2,68 +2,74 @@
 <html xmlns:wicket="http://wicket.apache.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>WicketAds - Classified Ads</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>WicketAds – Classified Ads</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+    <link href="/css/wicketads.css" rel="stylesheet"/>
 </head>
 <body>
-<nav class="navbar navbar-dark bg-dark mb-4">
-    <div class="container-fluid">
-        <a class="navbar-brand fw-bold" href="/">WicketAds</a>
-        <div class="d-flex gap-2 align-items-center">
-            <span wicket:id="guestNav">
-                <a wicket:id="loginLink" class="btn btn-outline-light btn-sm">Login</a>
-                <a wicket:id="registerLink" class="btn btn-outline-light btn-sm">Register</a>
-            </span>
-            <span wicket:id="userNav">
-                Welcome, <strong><span wicket:id="welcomeUser"></span></strong>
-                &nbsp;
-                <a wicket:id="postAdLink" class="btn btn-success btn-sm">Post Ad</a>
-                <a wicket:id="chatLink" class="btn btn-outline-light btn-sm">Messages</a>
-                <a wicket:id="profileLink" class="btn btn-outline-light btn-sm">Profile</a>
-                <a wicket:id="logoutLink" class="btn btn-outline-danger btn-sm">Logout</a>
-            </span>
-            <span wicket:id="adminNav">
-                <a wicket:id="adminUsersLink" class="btn btn-warning btn-sm">Admin: Users</a>
-            </span>
-        </div>
+
+<nav class="wa-nav">
+    <a class="wa-nav__brand" href="/"><i class="bi bi-grid-3x3-gap-fill"></i> WicketAds</a>
+    <div class="wa-nav__links">
+        <span wicket:id="guestNav">
+            <a wicket:id="loginLink" class="btn btn-outline btn-sm">
+                <i class="bi bi-box-arrow-in-right"></i> Login
+            </a>
+            <a wicket:id="registerLink" class="btn btn-primary btn-sm">
+                <i class="bi bi-person-plus"></i> Register
+            </a>
+        </span>
+        <span wicket:id="userNav" class="d-flex align-center gap-1">
+            <span class="wa-nav__welcome">Welcome, <strong><span wicket:id="welcomeUser"></span></strong></span>
+            <a wicket:id="postAdLink" class="btn btn-success btn-sm"><i class="bi bi-plus-circle"></i> Post Ad</a>
+            <a wicket:id="chatLink"   class="btn btn-outline btn-sm"><i class="bi bi-chat-dots"></i> Messages</a>
+            <a wicket:id="profileLink" class="btn btn-outline btn-sm"><i class="bi bi-person-circle"></i> Profile</a>
+            <a wicket:id="logoutLink"  class="btn btn-danger btn-sm"><i class="bi bi-box-arrow-right"></i> Logout</a>
+        </span>
+        <span wicket:id="adminNav">
+            <a wicket:id="adminUsersLink" class="btn btn-admin btn-sm"><i class="bi bi-shield-lock"></i> Admin</a>
+        </span>
     </div>
 </nav>
 
-<div class="container">
-    <h2 class="mb-3">Browse Ads</h2>
+<section class="wa-hero">
+    <h1><i class="bi bi-search"></i> Find Your Next Deal</h1>
+    <p>Thousands of classified ads – buy, sell, discover.</p>
 
-    <form wicket:id="searchForm" class="row g-2 mb-4">
-        <div class="col-md-6">
-            <input type="text" wicket:id="keyword" class="form-control" placeholder="Search keyword..."/>
-        </div>
-        <div class="col-md-4">
-            <select wicket:id="category" class="form-select">
-                <option value="">All Categories</option>
-            </select>
-        </div>
-        <div class="col-md-2">
-            <button type="submit" class="btn btn-primary w-100">Search</button>
-        </div>
+    <form wicket:id="searchForm" class="wa-search-bar">
+        <input type="text" wicket:id="keyword" class="form-control" placeholder="Search ads…"/>
+        <select wicket:id="category" class="form-select" style="max-width:200px;">
+            <option value="">All Categories</option>
+        </select>
+        <button type="submit" class="btn btn-primary">
+            <i class="bi bi-search"></i> Search
+        </button>
     </form>
+</section>
 
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col" wicket:id="adList">
-            <div class="card h-100 shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <a wicket:id="adLink" class="text-decoration-none">
-                            <span wicket:id="title"></span>
-                        </a>
-                    </h5>
-                    <span class="badge bg-secondary" wicket:id="category"></span>
-                    <p class="card-text mt-2 fw-bold text-success" wicket:id="price"></p>
-                    <small class="text-muted">Posted by <span wicket:id="owner"></span></small>
-                </div>
+<div class="container page-content">
+    <div class="ad-grid" wicket:id="adList">
+        <div class="ad-card">
+            <div>
+                <span class="badge badge-secondary" wicket:id="category"></span>
+            </div>
+            <div class="ad-card__title">
+                <a wicket:id="adLink"><span wicket:id="title"></span></a>
+            </div>
+            <div class="ad-card__price" wicket:id="price"></div>
+            <div class="ad-card__meta">
+                <i class="bi bi-person"></i> <span wicket:id="owner"></span>
             </div>
         </div>
     </div>
 
-    <div wicket:id="noAds" class="alert alert-info mt-4">No ads found.</div>
+    <div wicket:id="noAds" class="empty-state">
+        <i class="bi bi-inbox"></i>
+        No ads found matching your search.
+    </div>
 </div>
+
 </body>
 </html>
