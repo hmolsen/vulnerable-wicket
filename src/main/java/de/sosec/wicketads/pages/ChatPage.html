@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>WicketAds - Messages</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <style>
+        .message-bubble { background:#f1f3f5; border-radius:8px; padding:10px 14px; margin-bottom:10px; }
+        .message-bubble .sender { font-weight:bold; font-size:.85rem; color:#495057; }
+        .message-bubble .time { font-size:.75rem; color:#adb5bd; }
+        .conv-panel { border-right:1px solid #dee2e6; height:70vh; overflow-y:auto; }
+        .thread-panel { height:70vh; overflow-y:auto; }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark mb-4">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="/">WicketAds</a>
+        <div>
+            <a href="/" class="btn btn-outline-light btn-sm me-2">Home</a>
+            <a href="/profile" class="btn btn-outline-light btn-sm me-2">Profile</a>
+            <a href="/logout" class="btn btn-outline-danger btn-sm">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid px-4">
+    <h3 class="mb-3">Messages</h3>
+    <div class="row">
+        <!-- Left: conversation list -->
+        <div class="col-md-3 conv-panel pe-3">
+            <h6 class="text-uppercase text-muted mb-3">Conversations</h6>
+            <div class="list-group list-group-flush">
+                <div wicket:id="conversations" class="list-group-item list-group-item-action py-2">
+                    <a wicket:id="convLink" class="text-decoration-none d-block">
+                        <strong wicket:id="otherUsername"></strong>
+                        <small class="text-muted d-block" wicket:id="adInfo"></small>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right: message thread -->
+        <div class="col-md-9 d-flex flex-column">
+            <div class="thread-panel flex-grow-1 mb-3">
+                <div wicket:id="noConversation" class="text-muted text-center mt-5">
+                    Select a conversation to start chatting.
+                </div>
+
+                <div wicket:id="messages" class="message-bubble">
+                    <div class="d-flex justify-content-between">
+                        <span class="sender" wicket:id="senderUsername"></span>
+                        <span class="time" wicket:id="sentAt"></span>
+                    </div>
+                    <!-- VULNERABILITY: XSS - body rendered without HTML escaping -->
+                    <div wicket:id="body"></div>
+                </div>
+            </div>
+
+            <form wicket:id="sendForm">
+                <div class="input-group">
+                    <textarea wicket:id="messageBody" class="form-control" rows="2"
+                              placeholder="Type a message..."></textarea>
+                    <button type="submit" class="btn btn-primary">Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
